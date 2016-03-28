@@ -1,0 +1,22 @@
+html{
+    color: white;
+    text-shadow: black 0 0 2px;
+    text-align: center;
+    font-size: 40px;
+    overflow: hidden;
+}
+div{
+    position: absolute;
+    width: 80%;
+    margin: 0;
+    padding: 0;
+    left: 10%;
+    font-family: 'xinwei';
+}
+::-webkit-scrollbar{
+    display: none;
+}
+@font-face {
+    font-family: 'xinwei';
+    src: url('xinwei.ttf');
+}
