@@ -3,7 +3,9 @@ html{
     text-shadow: black 0 0 2px;
     text-align: center;
     font-size: 40px;
-    overflow: hidden;
+    cursor: default;
+    -webkit-user-select:none;
+    -webkit-tap-highlight-color:transparent;
 }
 div{
     position: absolute;
@@ -13,6 +15,20 @@ div{
     left: 10%;
     font-family: 'xinwei';
 }
+
+#button{
+    width: 210px;
+    border-radius: 8px;
+    display: inline-block;
+    padding: 5px;
+    font-size: 40px;
+    line-height: 40px;
+    background-image: linear-gradient(rgb(150, 47, 47),rgb(132,43,43));
+    box-shadow: rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(0, 0, 0, 0.3) 0 3px 10px;
+    left: calc(50% - 110px);
+    top: calc(50% - 40px);
+}
+
 ::-webkit-scrollbar{
     display: none;
 }
