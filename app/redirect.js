@@ -2,6 +2,9 @@
 (function(){
    var url=localStorage.getItem('noname_inited');
    if(url){
+       if(url==='nodejs'){
+           url='';
+       }
        var loadFailed=function(){
            localStorage.removeItem('noname_inited');
            window.location.reload();
