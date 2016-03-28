@@ -9,48 +9,13 @@
             document.addEventListener('deviceready', this.onDeviceReady, false);
         },
         onDeviceReady: function() {
-            var link=document.createElement('link');
-            link.rel='stylesheet';
-            link.href='index.css';
-            document.head.appendChild(link);
-
             var site=localStorage.getItem('noname_download_source')||'http://isha.applinzi.com/';
-
-            var button=document.createElement('div');
-            button.id='button';
-            button.innerHTML='下载无名杀';
-
-            var touchstart=function(e){
-                this.style.transform='scale(0.98)';
-            };
-            var touchend=function(){
-                this.style.transform='';
-            };
-            button.ontouchstart=touchstart;
-            button.ontouchend=touchend;
-            button.onclick=function(){
-                update();
-            };
-            document.body.appendChild(button);
-            document.ontouchmove=function(e){
-                e.preventDefault();
-            };
-
-            var changesite=document.createElement('div');
-            changesite.style.top='calc(50% + 30px)';
-            changesite.style.fontSize='20px';
-            changesite.innerHTML='选择下载源';
-            changesite.ontouchstart=touchstart;
-            changesite.ontouchend=touchend;
-            document.body.appendChild(changesite);
-            changesite.onclick=function(){
-                site=prompt('选择下载源',site)||site;
-            }
+            var button,changesite;
 
             var dir;
             var ua=navigator.userAgent.toLowerCase();
             if(ua.indexOf('android')!=-1){
-                dir=externalApplicationStorageDirectory;
+                dir=cordova.file.externalApplicationStorageDirectory;
             }
             else if(ua.indexOf('iphone')!=-1||ua.indexOf('ipad')!=-1){
                 dir=cordova.file.documentsDirectory;
@@ -124,6 +89,42 @@
                     window.location.reload();
                 };
                 document.head.appendChild(script);
+            }
+
+            var link=document.createElement('link');
+            link.rel='stylesheet';
+            link.href='index.css';
+            document.head.appendChild(link);
+
+            button=document.createElement('div');
+            button.id='button';
+            button.innerHTML='下载无名杀';
+
+            var touchstart=function(e){
+                this.style.transform='scale(0.98)';
+            };
+            var touchend=function(){
+                this.style.transform='';
+            };
+            button.ontouchstart=touchstart;
+            button.ontouchend=touchend;
+            button.onclick=function(){
+                update();
+            };
+            document.body.appendChild(button);
+            document.ontouchmove=function(e){
+                e.preventDefault();
+            };
+
+            changesite=document.createElement('div');
+            changesite.style.top='calc(50% + 30px)';
+            changesite.style.fontSize='20px';
+            changesite.innerHTML='选择下载源';
+            changesite.ontouchstart=touchstart;
+            changesite.ontouchend=touchend;
+            document.body.appendChild(changesite);
+            changesite.onclick=function(){
+                site=prompt('选择下载源',site)||site;
             }
         }
     };
