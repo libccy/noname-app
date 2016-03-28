@@ -10,7 +10,7 @@
                 this.onDeviceReady();
             }
             else{
-                var script=document.createElement('div');
+                var script=document.createElement('script');
                 script.src='cordova.js';
                 document.head.appendChild(script);
                 document.addEventListener('deviceready', this.onDeviceReady, false);
@@ -57,9 +57,10 @@
                 script.onload=function(){
                     localStorage.setItem('noname_download_source',site);
                     var updates=window.noname_source_list;
+                    delete window.noname_source_list;
+
     				var n1=0;
     				var n2=updates.length;
-    				var n=n2;
     				progress.innerHTML=n1+'/'+n2;
     				var finish=function(){
                         prompt.innerHTML='游戏文件下载完毕';
@@ -177,6 +178,9 @@
             };
             button.ontouchstart=touchstart;
             button.ontouchend=touchend;
+            button.onmousedown=touchstart;
+            button.onmouseup=touchend;
+            button.onmouseleave=touchend;
             button.onclick=function(){
                 update();
             };
@@ -191,6 +195,9 @@
             changesite.innerHTML='选择下载源';
             changesite.ontouchstart=touchstart;
             changesite.ontouchend=touchend;
+            changesite.onmousedown=touchstart;
+            changesite.onmouseup=touchend;
+            changesite.onmouseleave=touchend;
             document.body.appendChild(changesite);
             changesite.onclick=function(){
                 site=prompt('选择下载源',site)||site;
