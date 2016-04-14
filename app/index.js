@@ -17,7 +17,7 @@
             }
         },
         onDeviceReady: function() {
-            var site=localStorage.getItem('noname_download_source')||'http://isha.applinzi.com/';
+            var site=localStorage.getItem('noname_update_url')||'http://websha.cn/';
             var button,changesite;
 
             var dir;
@@ -55,7 +55,7 @@
                 var script=document.createElement('script');
                 script.src=site+'game/source.js';
                 script.onload=function(){
-                    localStorage.setItem('noname_download_source',site);
+                    localStorage.setItem('noname_update_url',site);
                     var updates=window.noname_source_list;
                     delete window.noname_source_list;
 
@@ -199,8 +199,33 @@
             changesite.onmouseup=touchend;
             changesite.onmouseleave=touchend;
             document.body.appendChild(changesite);
-            changesite.onclick=function(){
-                site=prompt('选择下载源',site)||site;
+
+            if(window.cordova){
+                changesite.onclick=function(){
+                    site=prompt('选择下载源',site)||site;
+                }
+            }
+            else{
+                changesite.contentEditable=true;
+                changesite.style.webkitUserSelect='text';
+                changesite.style.outline='none';
+                changesite.onclick=function(){
+                    if(this.innerHTML=='选择下载源'){
+                        this.innerHTML=site;
+                    }
+                }
+                changesite.onblur=function(){
+                    if(this.innerHTML!='选择下载源'){
+                        site=this.innerHTML;
+                        this.innerHTML='选择下载源';
+                    }
+                }
+                changesite.onkeydown=function(e){
+                    if(e.keyCode==13){
+                        e.preventDefault();
+                        this.blur();
+                    }
+                }
             }
         }
     };
