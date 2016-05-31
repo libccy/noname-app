@@ -23,6 +23,6 @@
                },loadFailed);
            },loadFailed);
        },loadFailed);
-       window.cordovaLoadTimeout=setTimeout(loadFailed,3000);
+       window.cordovaLoadTimeout=setTimeout(loadFailed,5000);
    }
 }());
