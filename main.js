@@ -1,15 +1,24 @@
-var app = require('app');
-var BrowserWindow = require('browser-window');
+const electron = require('electron');
+const {app} = electron;
+const {BrowserWindow} = electron;
 
-var mainWindow = null;
-app.on('window-all-closed', function() {
+let win;
+
+function createWindow() {
+    win = new BrowserWindow({width: 960, height: 660, title:'无名杀'});
+    win.loadURL(`file://${__dirname}/index.html`);
+    win.on('closed', () => {
+        win = null;
+    });
+}
+
+app.on('ready', createWindow);
+app.on('window-all-closed', () => {
     app.quit();
 });
-app.on('ready', function() {
-  mainWindow = new BrowserWindow({width: 960, height: 660, title:'无名杀'});
-  mainWindow.loadUrl('file://' + __dirname + '/index.html');
 
-  mainWindow.on('closed', function() {
-    mainWindow = null;
-  });
+app.on('activate', () => {
+    if (win === null) {
+        createWindow();
+    }
 });
