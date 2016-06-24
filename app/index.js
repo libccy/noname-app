@@ -18,7 +18,7 @@
         },
         onDeviceReady: function() {
             var site=localStorage.getItem('noname_update_url')||'http://websha.cn/';
-            var button,changesite;
+            var button,changesite,help;
 
             var dir;
             var ua=navigator.userAgent.toLowerCase();
@@ -32,6 +32,7 @@
             var update=function(){
                 button.remove();
                 changesite.remove();
+                help.remove();
                 if(site.indexOf('http://')!=0){
                     site='http://'+site;
                 }
@@ -191,14 +192,53 @@
 
             changesite=document.createElement('div');
             changesite.style.top='calc(50% + 30px)';
+            changesite.style.width='220px';
+            changesite.style.left='calc(50% - 110px)';
             changesite.style.fontSize='20px';
             changesite.innerHTML='选择下载源';
-            changesite.ontouchstart=touchstart;
-            changesite.ontouchend=touchend;
-            changesite.onmousedown=touchstart;
-            changesite.onmouseup=touchend;
-            changesite.onmouseleave=touchend;
             document.body.appendChild(changesite);
+
+            help=document.createElement('div');
+            help.style.bottom='20px';
+            help.style.width='180px';
+            help.style.left='auto';
+            help.style.right='20px';
+            help.style.textAlign='right';
+            help.style.fontSize='20px';
+            help.innerHTML='无法在线下载？';
+            var helpnode=document.createElement('div');
+            helpnode.id='noname_init_help';
+            var helpnodetext=document.createElement('div');
+            helpnodetext.innerHTML=
+            '<div><ol><li>访问<a href="https://github.com/libccy/noname">https://github.com/libccy/noname</a>，下载zip文件（Clone or download -> Download ZIP）'+
+            '<li>解压后将noname-master目录内的所有文件放入对应文件夹：<br>windows/linux：resources/app<br>mac：（右键显示包内容）contents/resources/app<br>android：android/data/com.widget.noname<br>ios：documents（itunes—应用—文件共享）'+
+            '<li>完成上述步骤后，<a href="javascript:localStorage.setItem(\'noname_inited\',window.tempSetNoname);window.location.reload()">点击此处</a></div>';
+            helpnode.appendChild(helpnodetext);
+            help.onclick=function(){
+                document.body.appendChild(helpnode);
+            }
+
+            var back=document.createElement('div');
+            back.classList.add('back');
+            back.style.width='60px';
+            back.style.bottom='20px';
+            back.style.left='auto';
+            back.style.right='20px';
+            back.style.textAlign='right';
+            back.style.fontSize='20px';
+            back.innerHTML='返回';
+            back.onclick=function(){
+                helpnode.remove();
+            };
+            helpnode.appendChild(back);
+            document.body.appendChild(help);
+            if(window.FileTransfer){
+                window.tempSetNoname=dir;
+            }
+            else{
+                window.tempSetNoname='nodejs';
+            }
+
 
             if(window.cordova){
                 changesite.onclick=function(){
@@ -206,12 +246,13 @@
                 }
             }
             else{
-                changesite.contentEditable=true;
-                changesite.style.webkitUserSelect='text';
                 changesite.style.outline='none';
                 changesite.onclick=function(){
-                    if(this.innerHTML=='选择下载源'){
+                    if(this.contentEditable!=true){
+                        this.contentEditable=true;
+                        changesite.style.webkitUserSelect='text';
                         this.innerHTML=site;
+                        this.focus();
                     }
                 }
                 changesite.onblur=function(){
@@ -219,6 +260,8 @@
                         site=this.innerHTML;
                         this.innerHTML='选择下载源';
                     }
+                    this.contentEditable=false;
+                    changesite.style.webkitUserSelect='none';
                 }
                 changesite.onkeydown=function(e){
                     if(e.keyCode==13){
