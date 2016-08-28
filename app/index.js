@@ -17,8 +17,22 @@
             }
         },
         onDeviceReady: function() {
-            var site=localStorage.getItem('noname_update_url')||'http://websha.cn/';
+            var site='https://raw.githubusercontent.com/libccy/noname/master/';
             var button,changesite,help;
+
+            var script=document.createElement('script');
+            script.src='https://rawgit.com/libccy/noname/master/game/update.js';
+            script.onload=function(){
+                if(window.noname_update){
+                    site=site.replace(/master/,'v'+window.noname_update.version);
+                    button.classList.remove('disabled');
+					delete window.noname_update;
+				}
+            }
+            script.onerror=function(){
+                help.onclick();
+            }
+            document.head.appendChild(script);
 
             var dir;
             var ua=navigator.userAgent.toLowerCase();
@@ -33,12 +47,6 @@
                 button.remove();
                 changesite.remove();
                 help.remove();
-                if(site.indexOf('http://')!=0){
-                    site='http://'+site;
-                }
-                if(site[site.length-1]!='/'){
-                    site+='/';
-                }
 
                 var prompt=document.createElement('div');
                 prompt.style.height='40px';
@@ -54,9 +62,8 @@
                 document.body.appendChild(progress);
 
                 var script=document.createElement('script');
-                script.src=site+'game/source.js';
+                script.src=site.replace(/raw\.githubusercontent/,'rawgit')+'game/source.js';
                 script.onload=function(){
-                    localStorage.setItem('noname_update_url',site);
                     var updates=window.noname_source_list;
                     delete window.noname_source_list;
 
@@ -87,7 +94,7 @@
                     }
                     else{
                         var fs=require('fs');
-                        var http=require('http');
+                        var http=require('https');
                         downloadFile=function(url,folder,onsuccess,onerror){
                             url=site+url;
                             var dir=folder.split('/');
@@ -170,6 +177,7 @@
             button=document.createElement('div');
             button.id='button';
             button.innerHTML='下载无名杀';
+            button.classList.add('disabled');
 
             var touchstart=function(e){
                 this.style.transform='scale(0.98)';
@@ -183,6 +191,7 @@
             button.onmouseup=touchend;
             button.onmouseleave=touchend;
             button.onclick=function(){
+                if(button.classList.contains('disabled')) return;
                 update();
             };
             document.body.appendChild(button);
@@ -196,7 +205,7 @@
             changesite.style.left='calc(50% - 110px)';
             changesite.style.fontSize='20px';
             changesite.innerHTML='选择下载源';
-            document.body.appendChild(changesite);
+            // document.body.appendChild(changesite);
 
             help=document.createElement('div');
             help.style.bottom='20px';
@@ -210,7 +219,7 @@
             helpnode.id='noname_init_help';
             var helpnodetext=document.createElement('div');
             helpnodetext.innerHTML=
-            '<div><ol><li>访问<a href="https://github.com/libccy/noname">https://github.com/libccy/noname</a>，下载zip文件（Clone or download -> Download ZIP）'+
+            '<div><ol><li>访问<a href="https://github.com/libccy/noname">https://github.com/libccy/noname/releases</a>，下载zip文件'+
             '<li>解压后将noname-master目录内的所有文件放入对应文件夹：<br>windows/linux：resources/app<br>mac：（右键显示包内容）contents/resources/app<br>android：android/data/com.widget.noname<br>ios：documents（itunes—应用—文件共享）'+
             '<li>完成上述步骤后，<a href="javascript:localStorage.setItem(\'noname_inited\',window.tempSetNoname);window.location.reload()">点击此处</a></div>';
             helpnode.appendChild(helpnodetext);

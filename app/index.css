@@ -29,7 +29,10 @@ a{
     background-image: linear-gradient(rgb(150, 47, 47),rgb(132,43,43));
     box-shadow: rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(0, 0, 0, 0.3) 0 3px 10px;
     left: calc(50% - 110px);
-    top: calc(50% - 40px);
+    top: calc(50% - 25px);
+}
+#button.disabled{
+    opacity: 0.5;
 }
 #noname_init_help{
     width: 100%;
