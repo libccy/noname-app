@@ -30,7 +30,7 @@
 				}
             }
             script.onerror=function(){
-                help.onclick();
+                document.body.appendChild(helpnode);
             }
             document.head.appendChild(script);
 
