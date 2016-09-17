@@ -219,7 +219,7 @@
             helpnode.id='noname_init_help';
             var helpnodetext=document.createElement('div');
             helpnodetext.innerHTML=
-            '<div><ol><li>访问<a href="https://github.com/libccy/noname">https://github.com/libccy/noname/releases</a>，下载zip文件'+
+            '<div><ol><li>访问<a href="https://github.com/libccy/noname/releases/latest">https://github.com/libccy/noname/releases/latest</a>，下载zip文件'+
             '<li>解压后将noname-master目录内的所有文件放入对应文件夹：<br>windows/linux：resources/app<br>mac：（右键显示包内容）contents/resources/app<br>android：android/data/com.widget.noname<br>ios：documents（itunes—应用—文件共享）'+
             '<li>完成上述步骤后，<a href="javascript:localStorage.setItem(\'noname_inited\',window.tempSetNoname);window.location.reload()">点击此处</a></div>';
             helpnode.appendChild(helpnodetext);
