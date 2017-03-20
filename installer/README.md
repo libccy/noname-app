@@ -5,7 +5,7 @@
 
 
 ##### 无法在线下载时
-1. 访问https://github.com/libccy/noname/releases/latest，下载源代码
+1. 访问https://github.com/libccy/noname/releases/latest ，下载源代码
 2. 解压后将noname目录内的所有文件放入对应文件夹：
     * windows/linux：resources/app
     * mac：（右键显示包内容）contents/resources/app
