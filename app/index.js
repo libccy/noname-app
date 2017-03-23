@@ -17,22 +17,48 @@
             }
         },
         onDeviceReady: function() {
-            var site='https://raw.githubusercontent.com/libccy/noname/master/';
-            var button,changesite,help;
+            var site_g='https://raw.githubusercontent.com/libccy/noname/';
+            var site_c='https://coding.net/u/libccy/p/noname/git/raw/';
+            var site=site_c;
+            var button,changesite,help,version,versionnode;
+            var req=function(url,onload,onerror,target){
+				var sScriptURL=url;
+				var oReq=new XMLHttpRequest();
+				if(onload) oReq.addEventListener("load",function(){
+                    try{
+                        eval(this.responseText);
+                        if(target&&!window[target]){
+                            throw('err');
+                        }
+                    }
+                    catch(e){
+                        onerror();
+                        return;
+                    }
+                    onload();
+                    if(target){
+                        delete window[target];
+                    }
+                });
+				if(onerror) oReq.addEventListener("error",onerror);
+				oReq.open("GET", sScriptURL);
+				oReq.send();
+			}
 
-            var script=document.createElement('script');
-            script.src='https://rawgit.com/libccy/noname/master/game/update.js';
-            script.onload=function(){
-                if(window.noname_update){
-                    site=site.replace(/master/,'v'+window.noname_update.version);
+            var checkConnection=function(){
+                button.innerHTML='正在连接';
+                button.classList.add('disabled');
+                versionnode.innerHTML='';
+                req(site+'master/game/update.js',function(){
                     button.classList.remove('disabled');
-					delete window.noname_update;
-				}
-            }
-            script.onerror=function(){
-                document.body.appendChild(helpnode);
-            }
-            document.head.appendChild(script);
+                    button.innerHTML='下载无名杀';
+                    version=window.noname_update.version;
+                    versionnode.innerHTML='v'+version;
+                },function(){
+                    button.classList.add('disabled');
+                    button.innerHTML='连接失败';
+                },'noname_update');
+            };
 
             var dir;
             var ua=navigator.userAgent.toLowerCase();
@@ -44,26 +70,28 @@
             }
 
             var update=function(){
-                button.remove();
-                changesite.remove();
-                help.remove();
+                button.innerHTML='正在连接';
+                button.classList.add('disabled');
+                versionnode.innerHTML='';
+                req(site+'v'+version+'/game/source.js',function(){
+                    button.remove();
+                    changesite.remove();
+                    help.remove();
+                    versionnode.remove();
 
-                var prompt=document.createElement('div');
-                prompt.style.height='40px';
-                prompt.style.top='calc(50% - 40px)';
-                prompt.style.lineHeight='40px';
-                prompt.innerHTML='正在下载游戏文件';
-                document.body.appendChild(prompt);
+                    var prompt=document.createElement('div');
+                    prompt.style.height='40px';
+                    prompt.style.top='calc(50% - 40px)';
+                    prompt.style.lineHeight='40px';
+                    prompt.innerHTML='正在下载游戏文件';
+                    document.body.appendChild(prompt);
 
-                var progress=document.createElement('div');
-                progress.style.top='calc(50% + 20px)';
-                progress.style.fontSize='20px';
-                progress.innerHTML='0/0';
-                document.body.appendChild(progress);
+                    var progress=document.createElement('div');
+                    progress.style.top='calc(50% + 20px)';
+                    progress.style.fontSize='20px';
+                    progress.innerHTML='0/0';
+                    document.body.appendChild(progress);
 
-                var script=document.createElement('script');
-                script.src=site.replace(/raw\.githubusercontent/,'rawgit')+'game/source.js';
-                script.onload=function(){
                     var updates=window.noname_source_list;
                     delete window.noname_source_list;
 
@@ -87,8 +115,9 @@
                     if(window.FileTransfer){
                         downloadFile=function(url,folder,onsuccess,onerror){
         					var fileTransfer = new FileTransfer();
-        					url=site+url;
+        					url=site+'v'+version+'/'+url;
         					folder=dir+folder;
+                            console.log(url);
         					fileTransfer.download(encodeURI(url),folder,onsuccess,onerror);
         				};
                     }
@@ -96,7 +125,7 @@
                         var fs=require('fs');
                         var http=require('https');
                         downloadFile=function(url,folder,onsuccess,onerror){
-                            url=site+url;
+                            url=site+'v'+version+'/'+url;
                             var dir=folder.split('/');
                             var str='';
                             var download=function(){
@@ -161,12 +190,10 @@
                     },null,function(){
                         setTimeout(finish,500);
                     });
-                };
-                script.onerror=function(){
-                    alert('连接失败');
-                    window.location.reload();
-                };
-                document.head.appendChild(script);
+                },function(){
+                    button.classList.add('disabled');
+                    button.innerHTML='连接失败';
+                },'noname_source_list');
             }
 
             var link=document.createElement('link');
@@ -176,10 +203,9 @@
 
             button=document.createElement('div');
             button.id='button';
-            button.innerHTML='下载无名杀';
-            button.classList.add('disabled');
 
             var touchstart=function(e){
+                if(this.classList.contains('disabled')) return;
                 this.style.transform='scale(0.98)';
             };
             var touchend=function(){
@@ -200,20 +226,14 @@
             };
 
             changesite=document.createElement('div');
-            changesite.style.top='calc(50% + 30px)';
-            changesite.style.width='220px';
-            changesite.style.left='calc(50% - 110px)';
-            changesite.style.fontSize='20px';
-            changesite.innerHTML='选择下载源';
-            // document.body.appendChild(changesite);
+            changesite.id='changesite';
+            changesite.innerHTML='切换下载源';
+            document.body.appendChild(changesite);
 
+            versionnode=document.createElement('div');
+            versionnode.id='version';
             help=document.createElement('div');
-            help.style.bottom='20px';
-            help.style.width='180px';
-            help.style.left='auto';
-            help.style.right='20px';
-            help.style.textAlign='right';
-            help.style.fontSize='20px';
+            help.id='help';
             help.innerHTML='无法在线下载？';
             var helpnode=document.createElement('div');
             helpnode.id='noname_init_help';
@@ -228,57 +248,31 @@
             }
 
             var back=document.createElement('div');
-            back.classList.add('back');
-            back.style.width='60px';
-            back.style.bottom='20px';
-            back.style.left='auto';
-            back.style.right='20px';
-            back.style.textAlign='right';
-            back.style.fontSize='20px';
+            back.id='back';
             back.innerHTML='返回';
             back.onclick=function(){
                 helpnode.remove();
             };
             helpnode.appendChild(back);
             document.body.appendChild(help);
+            document.body.appendChild(versionnode);
+            checkConnection();
+
             if(window.FileTransfer){
                 window.tempSetNoname=dir;
             }
             else{
                 window.tempSetNoname='nodejs';
             }
-
-
-            if(window.cordova){
-                changesite.onclick=function(){
-                    site=prompt('选择下载源',site)||site;
+            changesite.onclick=function(){
+                if(this.classList.toggle('bluetext')){
+                    site=site_g;
                 }
-            }
-            else{
-                changesite.style.outline='none';
-                changesite.onclick=function(){
-                    if(this.contentEditable!=true){
-                        this.contentEditable=true;
-                        changesite.style.webkitUserSelect='text';
-                        this.innerHTML=site;
-                        this.focus();
-                    }
+                else{
+                    site=site_c;
                 }
-                changesite.onblur=function(){
-                    if(this.innerHTML!='选择下载源'){
-                        site=this.innerHTML;
-                        this.innerHTML='选择下载源';
-                    }
-                    this.contentEditable=false;
-                    changesite.style.webkitUserSelect='none';
-                }
-                changesite.onkeydown=function(e){
-                    if(e.keyCode==13){
-                        e.preventDefault();
-                        this.blur();
-                    }
-                }
-            }
+                checkConnection();
+            };
         }
     };
 
