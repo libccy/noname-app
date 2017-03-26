@@ -20,7 +20,7 @@
             var site_g='https://raw.githubusercontent.com/libccy/noname/';
             var site_c='https://coding.net/u/libccy/p/noname/git/raw/';
             var site=site_c;
-            var button,changesite,help,version,versionnode;
+            var button,changesite,help,version,versionnode,device=null;
             var req=function(url,onload,onerror,target){
 				var sScriptURL=url;
 				var oReq=new XMLHttpRequest();
@@ -49,6 +49,16 @@
                 button.innerHTML='正在连接';
                 button.classList.add('disabled');
                 versionnode.innerHTML='';
+                if(helpnodetext){
+                    var a=helpnodetext.querySelector('a');
+                    if(site==site_g){
+                        a.href='https://github.com/libccy/noname/releases/latest';
+                    }
+                    else{
+                        a.href='https://coding.net/u/libccy/p/noname/git';
+                    }
+                    a.innerHTML=a.href;
+                }
                 req(site+'master/game/update.js',function(){
                     button.classList.remove('disabled');
                     button.innerHTML='下载无名杀';
@@ -64,9 +74,17 @@
             var ua=navigator.userAgent.toLowerCase();
             if(ua.indexOf('android')!=-1){
                 dir=cordova.file.externalApplicationStorageDirectory;
+                device='android';
             }
             else if(ua.indexOf('iphone')!=-1||ua.indexOf('ipad')!=-1){
                 dir=cordova.file.documentsDirectory;
+                device='ios';
+            }
+            else if(ua.indexOf('macintosh')!=-1){
+                device='mac';
+            }
+            else if(window.require){
+                device='windows';
             }
 
             var update=function(){
@@ -238,9 +256,17 @@
             var helpnode=document.createElement('div');
             helpnode.id='noname_init_help';
             var helpnodetext=document.createElement('div');
+            var helpstr;
+            switch(device){
+                case 'ios':helpstr='documents（itunes—应用—文件共享）';break;
+                case 'android':helpstr='android/data/com.widget.noname-android';break;
+                case 'mac':helpstr='右键显示包内容）contents/resources/app';break;
+                case 'windows':helpstr='resources/app';break;
+                default:helpstr='<br>windows/linux：resources/app<br>mac：（右键显示包内容）contents/resources/app<br>android：android/data/com.widget.noname<br>ios：documents（itunes—应用—文件共享）';
+            }
             helpnodetext.innerHTML=
-            '<div><ol><li>访问<a href="https://github.com/libccy/noname/releases/latest">https://github.com/libccy/noname/releases/latest</a>，下载zip文件'+
-            '<li>解压后将noname-master目录内的所有文件放入对应文件夹：<br>windows/linux：resources/app<br>mac：（右键显示包内容）contents/resources/app<br>android：android/data/com.widget.noname<br>ios：documents（itunes—应用—文件共享）'+
+            '<div><ol><li>访问<a></a>，下载zip文件'+
+            '<li>解压后将noname-master目录内的所有文件放入：'+helpstr+
             '<li>完成上述步骤后，<a href="javascript:localStorage.setItem(\'noname_inited\',window.tempSetNoname);window.location.reload()">点击此处</a></div>';
             helpnode.appendChild(helpnodetext);
             help.onclick=function(){
