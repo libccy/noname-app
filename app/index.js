@@ -18,8 +18,8 @@
         },
         onDeviceReady: function() {
             var site_g='https://raw.githubusercontent.com/libccy/noname/';
-            var site_c='https://coding.net/u/libccy/p/noname/git/raw/';
-            var site=site_c;
+            var site_c='https://gitlab.com/isgs/noname/raw/';
+            var site=site_g;
             var button,changesite,help,version,versionnode;
             var req=function(url,onload,onerror,target){
 				var sScriptURL=url;
@@ -136,7 +136,7 @@
                                     onerror();
                                 }
                                 var opts = require('url').parse(encodeURI(url));
-                                opts.headers={'User-Agent': navigator.userAgent};
+                                opts.headers={'User-Agent': 'AppleWebkit'};
                                 var request = http.get(opts, function(response) {
                                     var stream=response.pipe(file);
                                     stream.on('finish',onsuccess);
@@ -229,7 +229,7 @@
 
             changesite=document.createElement('div');
             changesite.id='changesite';
-            changesite.innerHTML='切换下载源';
+            changesite.innerHTML='下载源: GitHub';
             document.body.appendChild(changesite);
 
             versionnode=document.createElement('div');
@@ -268,10 +268,12 @@
             }
             changesite.onclick=function(){
                 if(this.classList.toggle('bluetext')){
-                    site=site_g;
+                    site=site_c;
+                    this.innerHTML='下载源: GitLab'
                 }
                 else{
-                    site=site_c;
+                    site=site_g;
+                    this.innerHTML='下载源: GitHub'
                 }
                 checkConnection();
             };
