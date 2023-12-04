@@ -1,0 +1,5 @@
+node_modules/
+package-lock.json
+无名杀-linux-x64/
+无名杀-win32-ia32/
+无名杀-win32-x64/

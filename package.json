@@ -1,5 +1,40 @@
 {
-  "name": "无名杀",
-  "version": "1.9.0",
-  "main": "main.js"
+	"name": "noname",
+	"version": "1.9.0",
+	"main": "main.js",
+	"author": {
+		"name": "libccy",
+		"url": "https://github.com/libccy"
+	},
+	"contributors": [
+		{
+			"name": "Tipx-L",
+			"url": "https://github.com/Tipx-L"
+		},
+		{
+			"name": "nonameShijian",
+			"url": "https://github.com/nonameShijian"
+		}
+	],
+	"scripts": {
+		"start": "electron .",
+		"packageWin64": "electron-packager . 无名杀 --platform=win32 --arch=x64 --out=./ --app-version=1.9.0 --icon=noname.ico --overwrite --ignore=./node_modules --ignore=.git --electron-version 22.3.27",
+		"packageWin32": "electron-packager . 无名杀 --platform=win32 --arch=ia32 --out=./ --app-version=1.9.0 --icon=noname.ico --overwrite --ignore=./node_modules --ignore=.git --electron-version 22.3.27",
+		"packageLinux": "electron-packager . 无名杀 --platform=linux --arch=x64 --out=./ --app-version=1.9.0 --icon=noname.ico --overwrite --ignore=./node_modules --ignore=.git --electron-version 22.3.27",
+		"packageWin64CompatibleEdition": "electron-packager . 无名杀 --platform=win32 --arch=x64 --out=./ --app-version=1.9.0 --icon=noname.ico --overwrite --ignore=./node_modules --ignore=.git --electron-version 7.3.3",
+		"packageWin32CompatibleEdition": "electron-packager . 无名杀 --platform=win32 --arch=ia32 --out=./ --app-version=1.9.0 --icon=noname.ico --overwrite --ignore=./node_modules --ignore=.git --electron-version 7.3.3",
+		"packageLinuxCompatibleEdition": "electron-packager . 无名杀 --platform=linux --arch=x64 --out=./ --app-version=1.9.0 --icon=noname.ico --overwrite --ignore=./node_modules --ignore=.git --electron-version 7.3.3"
+	},
+	"dependencies": {
+		"@electron/remote": "*",
+		"options": "0.0.6",
+		"ultron": "1.0.2",
+		"ws": "1.0.1"
+	},
+	"devDependencies": {
+		"electron": "^22",
+		"electron-packager": "*",
+		"esm": "*"
+	},
+	"productName": "无名杀"
 }
