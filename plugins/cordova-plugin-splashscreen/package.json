@@ -1,0 +1,85 @@
+{
+  "_from": "cordova-plugin-splashscreen@6.0.2",
+  "_id": "cordova-plugin-splashscreen@6.0.2",
+  "_inBundle": false,
+  "_integrity": "sha512-7JiUfnInir+SCOEgTJ+5/cHF3UFl69jp6cAQfHtJaaQt9Pli8D8yTJjU0HGlJCvryvsVs4Xlc7/sEJM7vLJgvg==",
+  "_location": "/cordova-plugin-splashscreen",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "cordova-plugin-splashscreen@6.0.2",
+    "name": "cordova-plugin-splashscreen",
+    "escapedName": "cordova-plugin-splashscreen",
+    "rawSpec": "6.0.2",
+    "saveSpec": null,
+    "fetchSpec": "6.0.2"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmmirror.com/cordova-plugin-splashscreen/-/cordova-plugin-splashscreen-6.0.2.tgz",
+  "_shasum": "2151ee7256fbd64f07a84951854687855c56856f",
+  "_spec": "cordova-plugin-splashscreen@6.0.2",
+  "_where": "E:\\cordovaApps\\yuri.nakamura.noname_android",
+  "author": {
+    "name": "Apache Software Foundation"
+  },
+  "bugs": {
+    "url": "https://github.com/apache/cordova-plugin-splashscreen/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-splashscreen",
+    "platforms": [
+      "android",
+      "windows",
+      "browser"
+    ]
+  },
+  "deprecated": false,
+  "description": "Cordova Splashscreen Plugin",
+  "devDependencies": {
+    "@cordova/eslint-config": "^3.0.0"
+  },
+  "engines": {
+    "cordovaDependencies": {
+      "2.0.0": {
+        "cordova-android": ">=3.6.0"
+      },
+      "6.0.2": {
+        "cordova-android": ">=3.6.0 <11.0.0",
+        "cordova-windows": ">=4.4.0"
+      },
+      "7.0.0": {
+        "cordova": ">100"
+      },
+      ">=4.0.0": {
+        "cordova-android": ">=3.6.0",
+        "cordova-windows": ">=4.4.0"
+      }
+    }
+  },
+  "homepage": "https://github.com/apache/cordova-plugin-splashscreen#readme",
+  "keywords": [
+    "cordova",
+    "splashscreen",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-windows",
+    "cordova-browser"
+  ],
+  "license": "Apache-2.0",
+  "name": "cordova-plugin-splashscreen",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apache/cordova-plugin-splashscreen.git"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "npm run lint"
+  },
+  "types": "./types/index.d.ts",
+  "version": "6.0.2"
+}

@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "yuri.nakamura.noname_android",
+  "variantName": "release",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "properties": [],
+      "versionCode": 10900,
+      "versionName": "10900",
+      "enabled": true,
+      "outputFile": "无名杀由理版v1.9.1(2023-11-29).ApK"
+    }
+  ]
+}
