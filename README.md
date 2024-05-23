@@ -47,4 +47,10 @@ def generateTime() {
 android { ... }
 ```
 
+在platforms\android\app\src\main\res\main\res\values\strings.xml添加:
+```xml
+<string name="app_import_title">无名杀由理兼容版</string>
+<string name="app_import_label">无名杀导入(由理兼容版)</string>
+```
+
 然后打开Android Studio进行安卓开发

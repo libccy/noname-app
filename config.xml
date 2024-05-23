@@ -30,11 +30,6 @@
         <edit-config file="app/src/main/AndroidManifest.xml" target="/manifest/application/activity[@android:name='MainActivity']" mode="merge">
             <activity android:screenOrientation="sensorLandscape" />
         </edit-config>
-        <!-- 配置strings.xml -->
-        <edit-config file="app/src/main/res/main/res/values/strings.xml" mode="merge" target="/resources/">
-            <string name="app_import_title">无名杀由理兼容版</string>
-            <string name="app_import_label">无名杀导入(由理兼容版)</string>
-        </edit-config>
         <!-- cordova12内置的Splash功能 -->
         <!-- 初始屏幕图像。此首选项用于动画和非动画图标。当前可接受的资源文件可以是 XML Vector Drawable 或 PNG -->
         <!-- <preference name="AndroidWindowSplashScreenAnimatedIcon" value="res/screen/android/splashscreen.xml" /> -->
