@@ -1,5 +1,6 @@
 # 无名杀由理版
 todo: 添加文件管理器功能
+
 安装apk后，启动时会对比Webview内核和安装的Chrome浏览器进行版本对比，哪个高就用哪个内核启动Webview组件(huawei webview无法判断版本)
 
 ## 环境要求
@@ -10,6 +11,13 @@ Android 7.0或以上
 
 ## 创建安卓项目
 先按教程全局安装cordova环境(本项目用的是cordova12)
+
+然后安装项目依赖
+
+```
+npm i cordova@12 -g
+npm i
+```
 
 创建安卓项目: 
 ```
