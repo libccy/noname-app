@@ -1,5 +1,45 @@
 {
-  "name": "无名杀",
-  "version": "1.9.0",
-  "main": "main.js"
+  "name": "yuri.nakamura.noname",
+  "displayName": "无名杀",
+  "version": "1.8.3",
+  "description": "HTML单机三国杀",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "nonameShijian",
+  "license": "GPL-3.0-only",
+  "devDependencies": {
+    "cordova-android": "^12.0.1",
+    "cordova-plugin-android-permissions": "^1.1.5",
+    "cordova-plugin-battery-status": "^2.0.3",
+    "cordova-plugin-device": "^2.1.0",
+    "cordova-plugin-dialogs": "^2.0.2",
+    "cordova-plugin-file": "^8.0.1",
+    "cordova-plugin-file-transfer": "^2.0.0",
+    "cordova-plugin-inappbrowser": "^6.0.0",
+    "cordova-plugin-insomnia": "^4.3.0",
+    "cordova-plugin-statusbar": "^4.0.0",
+    "cordova-plugin-vibration": "^3.1.1"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-file": {},
+      "cordova-plugin-file-transfer": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-dialogs": {},
+      "cordova-plugin-vibration": {},
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-battery-status": {},
+      "cordova-plugin-insomnia": {},
+      "cordova-plugin-android-permissions": {},
+      "cordova-plugin-statusbar": {}
+    },
+    "platforms": [
+      "android"
+    ]
+  }
 }
