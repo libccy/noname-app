@@ -1,5 +1,6 @@
 # 无名杀由理兼容版
 todo: 添加文件管理器功能
+
 安装apk后，apk固定以chrome 119内核启动Webview组件
 
 ## 环境要求
@@ -10,6 +11,13 @@ Android 7.0或以上
 
 ## 创建安卓项目
 先按教程全局安装cordova环境(本项目用的是cordova12)
+
+然后安装项目依赖
+
+```
+npm i cordova@12 -g
+npm i
+```
 
 创建安卓项目: 
 ```
