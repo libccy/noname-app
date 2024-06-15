@@ -81,6 +81,7 @@ public class MainActivity extends CordovaActivity {
 
     private void initWebviewSettings(SystemWebView webview, WebSettings settings) {
         settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        settings.setTextZoom(100);
         webview.addJavascriptInterface(new NonameJavaScriptInterface(MainActivity.this, webview, preferences),
                 "NonameAndroidBridge");
         WebView.setWebContentsDebuggingEnabled(true);
@@ -141,7 +142,11 @@ public class MainActivity extends CordovaActivity {
                     return;
                 }
                 PackageInfo upgradePackageInfo = getPackageManager().getPackageInfo(upgradeSource.getPackageName(), 0);
+                Log.e(TAG, String.valueOf(upgradePackageInfo == null));
                 if (upgradePackageInfo != null) {
+                    Log.e(TAG, upgradeSource.getPackageName());
+                    Log.e(TAG, String.valueOf(VersionUtils.compareVersion(WebViewUpgrade.getSystemWebViewPackageVersion(),
+                            upgradePackageInfo.versionName)));
                     // googleWebview应当等同于chrome
                     if ("com.google.android.webview".equals(SystemWebViewPackageName)) {
                         SystemWebViewPackageName = "com.android.chrome";
