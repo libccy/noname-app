@@ -4,7 +4,6 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.WallpaperManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -32,7 +31,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.palette.graphics.Palette;
 
 import com.noname.api.Utils;
@@ -1099,19 +1097,9 @@ public class NonameImportActivity extends Activity {
                 }
                 if (bitMap == null) {
                     updateText("正在加载默认壁纸");
-                    WallpaperManager wallpaperManager = WallpaperManager.getInstance(this);
-                    if (wallpaperManager.isWallpaperSupported() &&
-                            Build.VERSION.SDK_INT < 33 &&
-                            ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                        // 默认获取系统壁纸
-                        BitmapDrawable bitmapDrawable = (BitmapDrawable) wallpaperManager.getDrawable();
-                        // 获取系统壁纸的Bitmap
-                        bitMap = bitmapDrawable.getBitmap();
-                    } else {
-                        View view = getWindow().getDecorView();
-                        // 截屏获取view
-                        bitMap = getViewBitmap(view);
-                    }
+                    View view = getWindow().getDecorView();
+                    // 截屏获取view
+                    bitMap = getViewBitmap(view);
                 }
                 JSONObject colorJson = getStyleJson().optJSONObject("textColor");
                 final String titleColor = colorJson == null ? "" : colorJson.optString("title","");
