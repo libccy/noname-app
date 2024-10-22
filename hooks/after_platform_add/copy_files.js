@@ -65,6 +65,9 @@ module.exports = function (context) {
 				// 覆盖assets
 				console.log(`Copying assets files from "./assets" to "./platforms/android/app/src/main/assets"`);
 				fs.copySync('./assets', path.join('./platforms', 'android', 'app', 'src', 'main', 'assets'), { overwrite: true });
+				// 覆盖gradle
+				console.log(`Copying gradle files from "./gradle" to "./platforms/android/gradle"`);
+				fs.copySync('./gradle', path.join('./platforms', 'android', 'gradle'), { overwrite: true });
 			})
 		})
 		.catch((err) => {

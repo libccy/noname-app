@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="yuri.nakamura.noname" version="1.8.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+<widget id="yuri.nakamura.noname" version="1.8.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <name>无名杀</name>
     <description>HTML单机三国杀</description>
     <author email="dev@cordova.apache.org" href="https://github.com/nonameShijian">诗笺</author>
@@ -21,7 +21,7 @@
             <manifest xmlns:tools="http://schemas.android.com/tools" />
         </edit-config>
         <!-- 设置版本代码，低版本不能覆盖高版本的安卓 -->
-        <preference name="android-versionCode" value="108003" />
+        <preference name="android-versionCode" value="108004" />
         <!-- 设置usesCleartextTraffic -->
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
             <application android:usesCleartextTraffic="true" android:name=".updateDataApplication"/>
@@ -52,9 +52,8 @@
         <preference name="StatusBarOverlaysWebView" value="true" />
         <!-- file插件的配置，兼容以前的设置 -->
         <preference name="AndroidPersistentFileLocation" value="Compatibility" />
-        <!-- 默认以file协议启动webview -->
-        <!-- 但是我魔改了cordova源码，这个值没多大意义了 -->
-        <preference name="AndroidInsecureFileModeEnabled" value="true" />
+        <!-- 是否默认以file协议启动webview -->
+        <preference name="AndroidInsecureFileModeEnabled" value="false" />
         <!-- 启动模式 -->
         <preference name="AndroidLaunchMode" value="singleTask" />
         <!-- targetSdk改为31 -->
