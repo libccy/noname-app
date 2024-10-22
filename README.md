@@ -61,4 +61,5 @@ implementation 'androidx.palette:palette-ktx:1.0.0'
 然后打开Android Studio进行安卓开发
 
 由理版或由理兼容版使用`MT管理器`的签名进行分发
+
 其中由理版的签名状态是v1+v2，由理兼容版的签名状态是v1+v2+v3
