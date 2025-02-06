@@ -5,6 +5,8 @@ const {
 	BrowserWindow
 } = require('electron');
 
+require("./noname-server.js");
+
 let win;
 
 function createWindow() {
@@ -20,11 +22,12 @@ function createWindow() {
 			nodeIntegrationInWorker: true,
 			contextIsolation: false,
 			plugins: true,
-			experimentalFeatures: true
+			experimentalFeatures: true,
+			webSecurity: false,
 		}
 	});
 	win.maximize();
-	win.loadURL(`file://${__dirname}/index.html`);
+	win.loadURL("http://localhost:8089/index.html");
 	win.on('closed', () => win = null);
 }
 

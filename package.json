@@ -26,7 +26,11 @@
 		"packageLinuxCompatibleEdition": "electron-packager . 无名杀 --platform=linux --arch=x64 --out=./ --app-version=1.9.0 --icon=noname.ico --overwrite --ignore=./node_modules --ignore=.git --electron-version 7.3.3"
 	},
 	"dependencies": {
+		"@electron/get": "*",
 		"@electron/remote": "*",
+		"body-parser": "^1.20.3",
+    	"express": "^4.21.2",
+		"minimist": "^1.2.8",
 		"options": "0.0.6",
 		"ultron": "1.0.2",
 		"ws": "1.0.1"

@@ -1,9 +1,10 @@
+'use strict';
 (async () => {
 	let url = localStorage.getItem('noname_inited');
 
 	if (!url) return;
 
-	if (url === 'nodejs') url = '';
+	if (url === 'nodejs' || location.protocol.startsWith('http')) url = '';
 
 	const loadFailed = () => {
 		localStorage.removeItem('noname_inited');
@@ -16,7 +17,7 @@
 		script.onerror = reject;
 		document.head.appendChild(script);
 	});
-	window.cordovaLoadTimeout = setTimeout(loadFailed, 5000);
+	window.cordovaLoadTimeout = setTimeout(loadFailed, 10000);
 
 	try {
 		await Promise.all([
