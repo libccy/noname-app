@@ -1,12 +1,12 @@
 package yuri.nakamura.noname_android;
 
-import android.app.Application;
+import com.noname.core.application.NonameCoreApplication;
 
-public class UpdateDataApplication extends Application {
+public class UpdateDataApplication extends NonameCoreApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        if (getClass().getSuperclass() != Application.class) {
+        if (getClass().getSuperclass() != NonameCoreApplication.class) {
             throw new RuntimeException("this class is not my UpdateDataApplication");
         }
     }

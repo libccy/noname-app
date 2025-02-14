@@ -19,6 +19,6 @@
 
 package yuri.nakamura.noname_android;
 
-public class MainActivity extends com.noname.core.activity.MainActivity {
+public class MainActivity extends com.noname.core.activities.WebViewUpgradeCordovaActivity {
     // 已移动到NonameCore模块
 }
