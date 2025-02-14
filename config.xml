@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="yuri.nakamura.noname_android" version="1.9.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+<widget id="yuri.nakamura.noname_android" version="1.9.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <name>无名杀</name>
     <description>HTML单机三国杀</description>
     <author email="dev@cordova.apache.org" href="https://github.com/nonameShijian">诗笺</author>
@@ -21,10 +21,10 @@
             <manifest xmlns:tools="http://schemas.android.com/tools" />
         </edit-config>
         <!-- 设置版本代码，低版本不能覆盖高版本的安卓 -->
-        <preference name="android-versionCode" value="10903" />
+        <preference name="android-versionCode" value="10904" />
         <!-- 设置usesCleartextTraffic -->
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
-            <application android:usesCleartextTraffic="true"/>
+            <application android:usesCleartextTraffic="true" android:name=".UpdateDataApplication"/>
         </edit-config>
         <!-- 配置MainActivity的可旋转横屏 -->
         <edit-config file="app/src/main/AndroidManifest.xml" target="/manifest/application/activity[@android:name='MainActivity']" mode="merge">
@@ -56,12 +56,12 @@
         <preference name="AndroidInsecureFileModeEnabled" value="false" />
         <!-- 启动模式 -->
         <preference name="AndroidLaunchMode" value="singleTask" />
-        <!-- targetSdk改为31 -->
-        <preference name="android-targetSdkVersion" value="31" />
+        <!-- 发应用时所针对的最高Android版本。它告知Android系统你的应用已经为该版本进行了优化，并且了解该版本中的所有行为变更。 -->
+        <preference name="android-targetSdkVersion" value="34" />
         <!-- 编译的时候采用该api的规范进行代码检查和警告，但是并不会编译进apk中 -->
-        <preference name="android-compileSdkVersion" value="33" />
+        <preference name="android-compileSdkVersion" value="35" />
         <!-- android构建工具的版本 -->
-        <preference name="android-buildToolsVersion" value="33.0.2" />
+        <preference name="android-buildToolsVersion" value="35.0.0" />
         <!-- 配置Android Gradle Plugin Version -->
         <!-- <preference name="AndroidGradlePluginVersion" value="8.3.1" /> -->
         <!-- 配置Gradle Version -->
@@ -72,13 +72,10 @@
         <preference name="hostname" value="localhost" />
         <!-- 安卓权限配置和应用程序可见性 -->
         <config-file target="AndroidManifest.xml" parent="/*">
-            <queries>
-                <package android:name="com.android.chrome" />
-            </queries>
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" tools:ignore="ManifestOrder" />
             <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
             <uses-permission android:name="android.permission.WAKE_LOCK" />
-            <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+            <uses-permission android:name="android.permission.VIBRATE" />
             <!-- 安卓13(准确来说是11)以下的读写权限 -->
             <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="32" tools:ignore="ScopedStorage" />
             <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
