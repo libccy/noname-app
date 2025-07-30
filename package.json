@@ -1,11 +1,10 @@
 {
   "name": "yuri.nakamura.noname_android",
   "displayName": "无名杀",
-  "version": "1.9.4",
+  "version": "1.9.5",
   "description": "HTML单机三国杀",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "create": "cordova platform add android",
     "remove": "cordova platform remove android"
   },
@@ -15,7 +14,7 @@
   "author": "nonameShijian",
   "license": "GPL-3.0-only",
   "devDependencies": {
-    "cordova-android": "^13.0.0",
+    "cordova-android": "^14.0.1",
     "cordova-plugin-android-permissions": "^1.1.5",
     "cordova-plugin-battery-status": "^2.0.3",
     "cordova-plugin-device": "^3.0.0",
@@ -43,5 +42,8 @@
     "platforms": [
       "android"
     ]
+  },
+  "dependencies": {
+    "fs-extra": "^11.3.0"
   }
 }

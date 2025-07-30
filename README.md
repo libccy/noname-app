@@ -24,7 +24,7 @@ npm i
 
 创建安卓项目: 
 ```
-cordova platform add android@13
+cordova platform add android@14
 ```
 
 在platforms\android\settings.gradle中加入以下代码
@@ -33,7 +33,7 @@ include ":NonameCore"
 ```
 
 platforms\android\app\build.gradle的android上面添加:
-```gradle
+```groovy
 def generateTime() {
     return new Date().format("yyyy-MM-dd")
 }
@@ -41,7 +41,7 @@ android { ... }
 ```
 
 在platforms\android\app\build.gradle的android块中添加:
-```gradle
+```groovy
 android.applicationVariants.all {
     variant ->
         variant.outputs.all {
@@ -58,7 +58,7 @@ aaptOptions {
 ```
 
 在platforms\android\app\build.gradle的dependencies块的SUB-PROJECT DEPENDENCIES END注释后加入:
-```gradle
+```groovy
 dependencies {
     ...
     // SUB-PROJECT DEPENDENCIES END

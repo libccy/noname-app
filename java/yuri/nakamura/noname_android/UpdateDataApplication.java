@@ -6,7 +6,7 @@ public class UpdateDataApplication extends NonameCoreApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        if (getClass().getSuperclass() != NonameCoreApplication.class) {
+        if (UpdateDataApplication.class.getSuperclass() != NonameCoreApplication.class) {
             throw new RuntimeException("this class is not my UpdateDataApplication");
         }
     }
